@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script>
+            window.onload = () => {
+                const a = document.querySelector('#a')
+                a.addEventListener('click', (evt) => {
+                    evt.preventDefault()
+                    console.log('i was clicked')
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <a id='a' href="https://www.google.com/">click me</a>
+    </body>
+</html>

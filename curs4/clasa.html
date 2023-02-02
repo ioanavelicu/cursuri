@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <script>
+            class Clasa {
+                //proprietate privata
+                #prop1
+                static #count = 0
+
+                constructor (a) {
+                    this.#prop1 = a
+                    Clasa.#count++
+                }
+
+                get prop1() {
+                    return this.#prop1
+                }
+
+                set prop1(v) {
+                    this.#prop1 = v
+                }
+
+                static get count() {
+                    return Clasa.#count
+                }
+            }
+
+
+            const o1 = new Clasa(1)
+            console.log(o1.prop1)
+            o1.prop1 = 2
+            console.log(o1.prop1)
+
+            const o2 = new Clasa(2)
+            console.log('total obiecte create ' + Clasa.count)
+        </script>
+    </head>
+</html>

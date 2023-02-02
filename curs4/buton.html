@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            window.onload = () => {
+                const clickHandler = (evt) => {
+                    console.log('hello')
+                }
+                
+                const btn = document.querySelector('#btn')
+                //btn.addEventListener('click', clickHandler)
+
+                btn.onclick = () => {
+                    console.log('hello')
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="click me" id="btn"/>
+    </body>
+</html>

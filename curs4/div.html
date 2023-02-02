@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script>
+            window.onload = () => {
+                const d1 = document.querySelector('#d1')
+                const d2 = document.querySelector('#d2')
+                const d3 = document.querySelector('#d3')
+
+                d1.onclick = (evt) => {
+                    console.log('d1 was clicked')
+                }
+                d2.onclick = (evt) => {
+                    console.log('d2 was clicked')
+                    evt.stopPropagation()
+                }
+                d3.onclick = () => {
+                    console.log('d3 was clicked')
+                }
+
+                const a = document.querySelector('#link')
+                a.onclick = (evt) => {
+                    evt.preventDefault()
+                    alert('buna ziua')
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="d1">
+            <div id="d2">
+                <div id="d3">
+                    click me
+                </div>
+            </div>
+        </div>
+        <a href="https://www.google.com/" id="link" target="blank">to google</a>
+    </body>
+</html>

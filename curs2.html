@@ -1,0 +1,240 @@
+<html>
+    <head>
+        <script>
+            //stringurile functionaeaza ca un array
+            console.log("hello")
+            document.write("hello again")
+            let s1 = 'i am a "string"'
+            let s2 = "i am a 'string'"
+            console.log(s1)
+            console.log(s2)
+            let s3 = 'i am a  \'string'
+            let s4 = `i
+            am
+            a
+            multiline`
+            console.log(s4)
+            let s5 = `
+                <div>
+                    ${s1}
+                </div>`
+            console.log(s5)
+
+            //stiva -> push, pop
+            //stanga -> unshift, shift
+
+            let a0 = [0,1,2,3,4,5,6,7]
+            //indexOf -> index ul la care se gaseste o anumita val
+            let i0 = a0.indexOf(3)
+            console.log(i0)
+            //nu exista indexOf de obiecte
+            // daca nu exista val cautata, se returneaza -1
+            let i1 = a0.indexOf(8)
+            console.log(i1)
+
+            //slice -> face o copie, nu este o op distructiva
+            // elementele cu indecsii 1 2 3
+            let a1 = a0.slice(1, 4)
+            console.log(a1)
+
+            console.log(a0)
+            //splice -> functie variadica (nu este cunoscut de la inceput nr de parametrii)
+            //poz 0 = indicele de unde incepem
+            //poz 1 = cate elemente stergem
+            //poz 2 = ce elemente punem in  loc, nu trb sa fie egal cu nr de elemente taiate
+            let a3 = a0.splice(2,3,'a','b')
+            console.log(a0)
+            //afisam ce elemente am sters
+            console.log(a3)
+
+            //split -> returneaza un vector cu elementele dintr-un sir separate in functie de caracterul ales
+            let sir1 = 'a b c d'
+            let rez1 = sir1.split(' ')
+            console.log(rez1)
+            //construire sir nou cu split si constructor
+            let sirNou = 'a,b,c!d*e'
+            let rezNou = sirNou.split(/[,.!.*]/)
+            console.log(rezNou)
+
+            //join -> returneaza un string concatenat cu elmentul ales
+            let sir2 = rez1.join('*')
+            console.log(sir2)
+
+            //eroare
+            const CONSTANTA = 10
+            // CONSTANTA = 11
+            //function scoped -> vizibil in prima functie care il fol
+            for (var i = 0; i < 10; i++){}
+            console.log("var i=", i)
+
+            //block scoped
+            for (let j = 0; j < 10; j++){}
+            //eroare j is not defined
+            //console.log("var j=", j)
+
+            //********************************************************
+            //FUNCII
+            function f(a, b, c) {
+                return a + b + c
+            }
+            //un block fara return returneaza undefined
+            console.log(f(1,2,3))
+            console.log(f('a','b','c'))
+            console.log(f('a',2,3))
+            //daca apelez functia cu mai multi parametrii, cei in plus vor fi ignorati
+            //daca apelez cu mai putini parametrii, va returna undefined petru cei in plus
+            console.log(f('a',1)) //a1undefined
+
+
+            function fct(x) {
+                return x * 2
+            }
+            console.log(fct(2))
+
+
+            //FUNCTIE ANONIMA -> returneaza un ob care reprezinta o functie
+            let f1 = function(x) {
+                return x * 2
+            }
+            console.log(f1(2))
+            //f1 = 4
+
+
+            //cu x evalueaza bloc
+            let f2 = (x) => {
+                return x * 2
+            }
+            console.log(f2(3))
+
+            //omitem parantezele pt ca avem doar o variabila
+            //expresie care se evalueaza direct => nu trenuie return
+            let f3 = x => x * 2
+            console.log(f3(4))
+
+
+            //HIGHER ORDER FUNCTIONS
+            //ARRAY URI
+            //MAP => returneaza acelasi tip de structura si mentine dimensionalitatea
+            let a = [5,6,7,8,9]
+            //mapam continutul lui a la un array nou care va contine dublul fiecarui elem
+            //nu trebuie sa mapam la acelasi tip de data
+            let aMap = a.map(x => x * 2)
+            console.log(aMap)
+            //map => intodeauna obt acelasi nr de elemente
+            //let aMap2 = a.map((element, index, array) => `a[${index}] = ${element}`)
+            let aMap2 = a.map(x => `a[${a.indexOf(x)}] = ${x}`)
+            console.log(aMap2)
+
+            //FILTER
+            let aFil = a.filter(x => x > 6)
+            console.log(aFil)
+
+            //SOME =>or, cel putin un element respecta conditia, returneaza boolean
+            let b1 = a.some(x => x > 6)
+            console.log(b1)
+
+            //EVERY =>and pe toate elementele => toate elem resp conditia, returneaza boolean
+            let b2 = a.every(x => x > 6)
+            console.log(b2)
+
+            //FIND => returneaza un element al array ului daca el exista
+            const n1 = a.find(x => x > 5)
+            console.log(n1)
+            //daca nu exista => undefined
+
+            //FINDINDEX => returneaza indexul primei apartii a elem cautat
+            const n2 = a.findIndex(x => x > 5)
+            console.log(n2)
+            //daca nu exista => -1
+
+            //REDUCE => reducere de dimensionalitate
+            //array => reduce => numar
+            //primul parametru = cu ce este inlocuit acumulatorul
+            //al doilea parametru = valoarea initiala
+            let n3 = a.reduce((a, e) => a + e, 0) //reduce left
+            console.log(n3)
+            let n4 = [[1,2,3],[1],[1,2]]
+            //CONCAT = returneaza un nou array format din doua array uri concatenate
+            let n5 = n4.reduce((a, e) => a.concat(e), [])
+            console.log(n5)
+            //reduce right => porneste de la utlimul elem
+            let n6 = n4.reduceRight((a, e) => a.concat(e), [])
+            console.log(n6)
+
+            let result = a.filter(e => !(e % 2)).map(e => e / 2).reduce((a,e) => a + e, 0)
+            console.log(result)
+
+            //FUNCTIE CU PARAMETRII MULTIPLI 
+            //... => destructurare
+            function sum(x, y, ...args) {
+                return args.reduce((a,e) => a + e, x + y)
+            }
+            console.log(sum(1,2,3,4,5))
+
+            // function anyfunc(...args) {
+                 
+            // }
+
+            //FUNCTII CA VALOARE
+
+            let o = {
+                a: 1,
+                b: 'something',
+                printMe: function() {
+                    console.log(`${this.a} ${this.b}`)
+                }
+            }
+            o.printMe()
+
+            function g(base) {
+                let f = function() {
+                    console.log('inside' + base)
+                }
+                //f()
+                // f nu poate fi dezalocat 
+                return f
+            }
+            //g(10)
+            let func = g(10)
+            func()
+
+            function ba(base) {
+                return function(x) {
+                    base += x
+                    console.log(base)
+                }
+            }
+
+            //tenBaseAdder si hundredBaseAdder au stare 
+            let tenBaseAdder = ba(10)
+            let hundredBaseAdder = ba(100)
+
+            tenBaseAdder(1)
+            tenBaseAdder(1)
+            tenBaseAdder(1)
+            hundredBaseAdder(1)
+            tenBaseAdder(1)
+
+            //MEMORIZARE
+            function fibGen(){
+                let cache = [1,1]
+                function fib(index) {
+                    if (index < cache.length) {
+                        console.warn('found' + index)
+                        return cache[index]
+                    } else {
+                        cache[index] = fib(index - 1) + fib(index - 2)
+                        return cache[index]
+                    }
+                }
+                return fib
+            }
+
+            let fibbonacci = fibGen()
+            console.log(fibbonacci(1))
+            console.log(fibbonacci(5))
+            console.log(fibbonacci(3))
+
+        </script>
+    </head>
+</html>

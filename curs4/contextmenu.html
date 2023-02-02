@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+            //window.onload = () => {
+                document.addEventListener('contextmenu', function(e) {
+                    which(e)
+                    e.preventDefault()
+                }, false)
+
+                function which(event) {
+                    switch (event.button) {
+                        case 0:
+                            console.log('LEFT')
+                            break;
+                        case 1:
+                            console.log('MIDDLE')
+                            break;
+                        case 2:
+                            console.log('RIGHT')
+                            break;
+                        default:
+                            alert('UNEXPECTED' + event.button)
+                    }
+                }
+            //}
+        </script>
+    </head>
+    <body>
+        <input type="button" onclick="which(event)" value="click me"/>
+    </body>
+</html>
